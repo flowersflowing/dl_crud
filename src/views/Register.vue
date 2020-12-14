@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h2>Regístrate</h2>
-    <b-form @submit.prevent="login" @reset="onReset" v-if="show">
+    <b-form @submit.prevent="createUser" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Correo electrónico:" label-for="input-1" description="We'll never share your email with anyone else.">
         <b-form-input id="input-1" v-model="form.email" type="email" required placeholder="usuario@hola.es"></b-form-input>
       </b-form-group>
@@ -34,13 +34,13 @@
       }
     },
     methods: {
-      login() {
+      createUser() {
         if(this.form.email && this.form.password && this.form.password.length >= 6 && this.form.name) {
           console.log('Está entrando');
           firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.name, this.form.password)
           .then(resp => {
-            console.log(resp.user.email);
-            this.$router.push('/home');
+            console.log(resp);
+            // this.$router.push('/home');
           })
           .catch(error => {
             if(error.code == 'auth/email-already-in-use') {
