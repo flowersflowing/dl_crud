@@ -27,7 +27,6 @@
       return {
         form: {
           email: '',
-          // name: '',
           password: '',
         },
         show: true
@@ -44,30 +43,40 @@
           })
           .catch(error => {
             if(error.code == 'auth/email-already-in-use') {
-              console.log('el correo ya existe');            
+              console.log('el correo ya existe');
+              this.errors(error);           
             } else if(error.code == 'auth/invalid-email') {
               console.log('correo inválido');
+              this.errors(error);
             } else if(error.code == 'auth/weak-password') {
-              console.log('contraseña débil, debe tener más de seis caracteres');            
+              console.log('contraseña débil, debe tener más de seis caracteres');
+              this.errors(error);            
             } else {
-              console.log('operación no permitida');           
+              console.log('operación no permitida');
+              this.errors(error);          
             }
           })
         } else {
           console.log('error');
         }
+      },
+      errors(error) {
+        this.$notify.error({
+          title: 'Error',
+          message: `${error.message}`
+        })
+      },
+      onReset(evt) {
+        evt.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
       }
-    },
-    onReset(evt) {
-      evt.preventDefault()
-      // Reset our form values
-      this.form.email = ''
-      this.form.name = ''
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
     }
   }
 </script>
