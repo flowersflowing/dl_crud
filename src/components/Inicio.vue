@@ -1,5 +1,5 @@
 <template>
-  <div class="hello container text-center mt-5">
+  <div class="inicio container text-center mt-5">
     <b-button size="lg" variant="outline-dark" @click="logout">Logout</b-button>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import firebase from 'firebase';
 export default {
-  name: 'HelloWorld',
+  name: 'Inicio',
   methods: {
     logout() {
       firebase.auth().signOut().then(() => {
