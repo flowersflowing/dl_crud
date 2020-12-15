@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello container text-center mt-5">
     <b-button size="lg" variant="outline-dark">Ir al Login</b-button>
   </div>
 </template>
@@ -7,8 +7,6 @@
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-  }
 }
 </script>
 

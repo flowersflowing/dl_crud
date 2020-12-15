@@ -10,6 +10,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes: [
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
+  },
+  {
     path: '/home',
     name: 'Home',
     component: Home,
@@ -24,16 +34,6 @@ const router = new VueRouter({
   {
     path: '*',
     redirect: '/login'
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
   }
 ]
 });

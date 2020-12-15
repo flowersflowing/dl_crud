@@ -17,7 +17,7 @@
 <script>
   import firebase from 'firebase';
 
-  // import { Message } from 'element-ui';
+  // import { message } from 'element-ui';
 
   export default {
     data() {
@@ -29,32 +29,51 @@
         show: true
       }
     },
+    // methods: {
+    //   login() {
+    //     if(this.form.email && this.form.password && this.form.password.length >= 6) {
+    //       console.log('Está entrando');
+    //       firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
+    //       .then(resp => {
+    //         console.log(resp.user.email);
+    //         this.$router.push('/home');
+    //       })
+    //       .catch(error => {
+    //         if(error.code == 'auth/wrong-password') {
+    //           // console.log('contraseña inválida');
+    //           this.errors(error);           
+    //         } else if(error.code == 'auth/invalid-email') {
+    //           // console.log('correo inválido');
+    //           this.errors(error);
+    //         } else if(error.code == 'auth/user-disabled') {
+    //           // console.log('usuario no identificado');
+    //           this.errors(error);    
+    //         } else {
+    //           console.log('error de ingreso');
+    //           this.errors(error);
+    //           // this.$router.push('/register');           
+    //         }
+    //       })
+    //     } else {
+    //       console.log('error');
+    //     }
+    //   }
+    // },
     methods: {
       login() {
-        if(this.form.email && this.form.password && this.form.password.length >= 6) {
-          console.log('Está entrando');
-          firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
-          .then(resp => {
-            console.log(resp.user.email);
-            this.$router.push('/home');
-          })
-          .catch(error => {
-            if(error.code == 'auth/wrong-password') {
-              console.log('contraseña inválida');            
-            } else if(error.code == 'auth/invalid-email') {
-              console.log('correo inválido');
-            } else if(error.code == 'auth/user-disabled') {
-              console.log('usuario no identificado');
-              this.$router.push('/register');            
-            } else {
-              console.log('error de ingreso');
-              this.$router.push('/register');           
-            }
-          })
-        } else {
-          console.log('error');
-        }
-      }
+        firebase.auth()
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then(acept => {
+          console.log('Entra', acept);
+          this.$router.push('/home');
+        },
+        reject => {
+          this.$message({
+            showClose: true,
+            message: reject.message,
+            type: 'error'
+          });
+        });
     },
     onReset(evt) {
       evt.preventDefault()
@@ -66,6 +85,13 @@
       this.$nextTick(() => {
         this.show = true
       })
-    }
+    },
+    errors(error) {
+      this.$notify.error({
+        title: 'Error',
+        message: `${error.message}`
+      });
+    }      
+   },
   }
 </script>
