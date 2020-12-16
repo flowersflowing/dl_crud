@@ -19,6 +19,8 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
+export const db = firebase.firestore();
+
 new Vue({
   router,
   store,
