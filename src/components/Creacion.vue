@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h2>Creación de usuarios</h2>
-    <b-form @submit.prevent="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit.prevent="crear" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Nombre:" label-for="input-1">
         <b-form-input id="input-1" v-model="form.name" placeholder="Mikiso" required></b-form-input>
       </b-form-group>
@@ -31,7 +31,13 @@ export default {
         }
     },
     methods: {
-        
+        crear() {
+            if(this.form.name && this.form.lastname && this.form.email) {
+                this.$store.dispatch('agregarUsuario', this.form);
+            } else {
+                console.log('Error');
+            }
+        }    
     },
 }
 </script>
