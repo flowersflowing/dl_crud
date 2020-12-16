@@ -14,7 +14,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    cambiarUsuario(state, arreglo) {
+    cambiarUsuarios(state, arreglo) {
       state.usuarios = arreglo;
     }
   },
@@ -32,6 +32,15 @@ export default new Vuex.Store({
         });
         commit('cambiarUsuarios', arreglo);
       });
+    },
+    agregarUsuario(context, data) {
+      db.collection("usuarios").add({
+        name: data.name,
+        lastname: data.lastname,
+        email: data.email
+      }).then(resp => {
+        console.log(resp);
+      })
     }
   }
 })

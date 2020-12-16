@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+Cuenta de ingreso para entrar a Home: 
+email: usuarios@hola.es clave: 123456

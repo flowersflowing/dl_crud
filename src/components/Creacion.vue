@@ -33,7 +33,7 @@ export default {
     methods: {
         crear() {
             if(this.form.name && this.form.lastname && this.form.email) {
-                this.$store.dispatch('agregarUsuario', this.form);
+                this.$store.dispatch('agregarUsuario', this.form)
             } else {
                 console.log('Error');
             }
