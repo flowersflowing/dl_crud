@@ -2,6 +2,7 @@
   <div class="home">
     <Inicio/>
     <Creacion/>
+    <Listas/>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 // @ is an alias to /src
 import Inicio from '@/components/Inicio.vue'
 import Creacion from '../components/Creacion.vue'
+import Listas from '../components/Listas.vue'
 
 export default {
   name: 'Home',
   components: {
     Inicio,
-    Creacion
+    Creacion,
+    Listas
   }
 }
 </script>

@@ -43,8 +43,7 @@ export default {
             // Reset our form values
             this.form.email = ''
             this.form.name = ''
-            this.form.food = null
-            this.form.checked = []
+            this.form.lastname = ''
             // Trick to reset/clear native browser form validation state
             this.show = false
             this.$nextTick(() => {
