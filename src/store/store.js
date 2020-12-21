@@ -41,6 +41,13 @@ export default new Vuex.Store({
       }).then(resp => {
         console.log(resp);
       })
+    },
+    eliminar(context, id) {
+      db.collection('usuarios').doc(id).delete().then(() => {
+        console.log('eliminado');
+      }).catch(error => {
+        console.log(error);
+      });
     }
   }
 })
